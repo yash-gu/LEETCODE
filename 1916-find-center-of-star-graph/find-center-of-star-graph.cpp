@@ -5,4 +5,7 @@ public:
         int c = edges[1][0], d = edges[1][1];
         return (a == c || a == d) ? a : b;
     }
+
+
+    
 };
