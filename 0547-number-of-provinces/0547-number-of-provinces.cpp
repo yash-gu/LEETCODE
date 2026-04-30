@@ -2,7 +2,6 @@ class Solution {
 public:
     void dfs(vector<vector<int>>& isConnected, int i, int j) {
         isConnected[i][j] = 0;
-        isConnected[j][i] = 0; 
 
         for (int k = 0; k < isConnected.size(); k++) {
             if (isConnected[j][k] == 1) {
