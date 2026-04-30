@@ -3,10 +3,14 @@ public:
     void dfs(vector<vector<int>>& isConnected, int i, int j) {
         isConnected[i][j] = 0;
 
-        for (int k = 0; k < isConnected.size(); k++) {
-            if (isConnected[j][k] == 1) {
-                dfs(isConnected, j, k);
-            }
+        if (i - 1 >= 0 && isConnected[i - 1][j] == 1) {
+            dfs(isConnected, i - 1, j);
+        } else if (i + 1 < isConnected.size() && isConnected[i + 1][j] == 1) {
+            dfs(isConnected, i + 1, j);
+        } else if (j - 1 >= 0 && isConnected[i][j - 1] == 1) {
+            dfs(isConnected, i, j - 1);
+        } else if (j + 1 < isConnected[0].size() && isConnected[i][j + 1] == 1) {
+            dfs(isConnected, i, j + 1);
         }
     }
 
