@@ -6,25 +6,24 @@ public:
         for(int i=0;i<n;i++){
             sum+=nums[i];
         }
-        vector<vector<bool>> dp(n+1,vector<bool>(sum/2+1,false));
-        if(sum%2!=0){
+        if(sum%2==1){
             return false;
-        }else{
-            for (int i = 0; i <= n; i++) {
+        }
+        sum=sum/2;
+        vector<vector<bool>> dp(n, vector<bool>(sum + 1, false));
+        for (int i = 0; i < n; i++) {
             dp[i][0] = true;
-            }
-            for (int i = 1; i <= n; i++) {
-                for (int j = 1; j <= sum/2; j++) {
-                    if (nums[i - 1] <= j) {
-                        dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i - 1]];
-                    } else {
-                    dp[i][j] = dp[i - 1][j];
-                    }
+        }
+        if (nums[0] <= sum) {
+            dp[0][nums[0]] = true;
+        }
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j <= sum; j++) {
+                dp[i][j] = dp[i - 1][j];
+                if (nums[i] <= j) {
+                    dp[i][j] = dp[i][j] || dp[i - 1][j - nums[i]];
                 }
             }
-        
-
-        }
-        return dp[n][sum/2];
+        }return dp[n - 1][sum];
     }
 };
