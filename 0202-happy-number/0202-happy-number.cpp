@@ -1,23 +1,26 @@
 class Solution {
-public:
-    int getNext(int n) {
-        int totalSum = 0;
-        while (n > 0) {
-            int d = n % 10;
-            n = n / 10;
-            totalSum += d * d;
-        }
-        return totalSum;
+    int sumsq(int n){
+        int sq = 0;
+    while (n) {
+        int digit = n % 10;
+        sq += digit * digit;
+        n = n / 10;
     }
-
+    return sq;
+    }
+public:
     bool isHappy(int n) {
-        int slow = n;
-        int fast = getNext(n);
-        while (fast != 1 && slow != fast) {
-            slow = getNext(slow);
-            fast = getNext(getNext(fast));
+        unordered_set<int> vis;
+        vis.insert(n);
+
+        while(true){
+            if(n==1)return true;
+            n=sumsq(n);
+            if(vis.find(n)!=vis.end())return false;
+            vis.insert(n);
         }
-        
-        return fast == 1;
+
+        return false;
+
     }
 };
