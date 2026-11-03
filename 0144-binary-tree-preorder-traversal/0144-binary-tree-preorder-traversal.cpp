@@ -10,14 +10,6 @@
  * };
  */
 class Solution {
-public:
-    vector<int> preorderTraversal(TreeNode* root) {
-        vector<int> result;
-        traverse(root, result);
-        return result;
-    }
-
-private:
     void traverse(TreeNode* node, vector<int>& result) {
         if (node == nullptr) {
             return;
@@ -25,5 +17,11 @@ private:
         result.push_back(node->val);
         traverse(node->left, result);
         traverse(node->right, result);
+    }
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> result;
+        traverse(root, result);
+        return result;
     }
 };
