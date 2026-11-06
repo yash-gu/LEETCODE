@@ -1,10 +1,16 @@
 class Solution {
     void sett(vector<vector<int>>& p, int i, int j) {
+        if (i - 1 >= 0) { 
+            p[i - 1][j] -= 1; 
+        }
         if (i + 1 < p.size()) {
-            p[i + 1][j] -= 2; 
+            p[i + 1][j] -= 1; 
+        }
+        if (j - 1 >= 0) { 
+            p[i][j - 1] -= 1; 
         }
         if (j + 1 < p[0].size()) { 
-            p[i][j + 1] -= 2; 
+            p[i][j + 1] -= 1; 
         }
     }
 public:
@@ -19,8 +25,14 @@ public:
         for(int i=0;i<row;i++){
             for(int j=0;j<col;j++){
                 if(grid[i][j]==1){
-                    perimeter+=p[i][j];
                     sett(p,i,j);
+                }
+            }
+        }
+        for(int i=0;i<row;i++){
+            for(int j=0;j<col;j++){
+                if(grid[i][j]==1){
+                    perimeter+=p[i][j];
                 }
             }
         }
